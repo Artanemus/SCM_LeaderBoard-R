@@ -102,7 +102,8 @@ implementation
 { TRPTS }
 
 uses
-  vcl.Forms, System.IniFiles, System.DateUtils, vcl.Dialogs, Utility;
+  vcl.Forms, System.IniFiles, System.DateUtils, vcl.Dialogs, Utility,
+  System.UITypes;
 
 procedure TRPTS.CloseAllQry;
 begin
@@ -237,7 +238,7 @@ begin
       begin
         qry := nil;
         result := TRtnError.reNotAssigned;
-        exit;
+        Exit;
       end;
     smABSEvent, smABSHeat:
       begin
@@ -250,7 +251,6 @@ begin
         rpt := frxEventREL;
       end;
   end;
-
 
   if Assigned(qry) then
   begin
@@ -435,7 +435,7 @@ begin
       begin
         qry := nil;
         result := TRtnError.reNotAssigned;
-        exit;
+        Exit;
       end;
     smABSEvent, smABSHeat:
       begin
@@ -575,7 +575,7 @@ begin
       begin
         qry := nil;
         result := TRtnError.reNotAssigned;
-        exit;
+        Exit;
       end;
     smABSEvent:
       begin

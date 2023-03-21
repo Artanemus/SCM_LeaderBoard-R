@@ -1,5 +1,4 @@
 object RPTS: TRPTS
-  OldCreateOrder = False
   OnCreate = DataModuleCreate
   Height = 560
   Width = 845
