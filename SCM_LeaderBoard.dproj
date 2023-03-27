@@ -4,7 +4,7 @@
         <ProjectVersion>19.5</ProjectVersion>
         <FrameworkType>VCL</FrameworkType>
         <Base>True</Base>
-        <Config Condition="'$(Config)'==''">Debug</Config>
+        <Config Condition="'$(Config)'==''">Release</Config>
         <Platform Condition="'$(Platform)'==''">Win32</Platform>
         <TargetedPlatforms>1</TargetedPlatforms>
         <AppType>Application</AppType>
@@ -107,7 +107,6 @@
         <DCC_DebugInformation>0</DCC_DebugInformation>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2_Win32)'!=''">
-        <AppEnableRuntimeThemes>true</AppEnableRuntimeThemes>
         <AppDPIAwarenessMode>PerMonitorV2</AppDPIAwarenessMode>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
         <VerInfo_Locale>1033</VerInfo_Locale>
@@ -117,7 +116,8 @@
         <VerInfo_MajorVer>0</VerInfo_MajorVer>
         <VerInfo_MinorVer>1</VerInfo_MinorVer>
         <VerInfo_PreRelease>true</VerInfo_PreRelease>
-        <VerInfo_Keys>CompanyName=Artanemus;FileDescription=$(MSBuildProjectName);FileVersion=0.1.0.0;InternalName=LeaderBoard;LegalCopyright=© 2019-2022;LegalTrademarks=Artanemus;OriginalFilename=SCM_LeaderBoard.exe;ProgramID=com.embarcadero.$(MSBuildProjectName);ProductName=$(MSBuildProjectName);ProductVersion=0.1;Comments=Track the scores of your swimmers and club houses. A SwimClubMeet support app.</VerInfo_Keys>
+        <VerInfo_Keys>CompanyName=Artanemus;FileDescription=$(MSBuildProjectName);FileVersion=0.1.1.0;InternalName=LeaderBoard;LegalCopyright=© 2019-2022;LegalTrademarks=Artanemus;OriginalFilename=SCM_LeaderBoard.exe;ProgramID=com.embarcadero.$(MSBuildProjectName);ProductName=$(MSBuildProjectName);ProductVersion=0.1;Comments=Track the scores of your swimmers and club houses. A SwimClubMeet support app.</VerInfo_Keys>
+        <VerInfo_Release>1</VerInfo_Release>
     </PropertyGroup>
     <ItemGroup>
         <DelphiCompile Include="$(MainSource)">
@@ -127,7 +127,6 @@
             <Form>LeaderBoard</Form>
             <FormType>dfm</FormType>
         </DCCReference>
-        <DCCReference Include="exeinfo.pas"/>
         <DCCReference Include="dmSCM.pas">
             <Form>SCM</Form>
             <FormType>dfm</FormType>
@@ -137,24 +136,26 @@
             <Form>Splash</Form>
             <FormType>dfm</FormType>
         </DCCReference>
-        <DCCReference Include="dlgBasicLogin.pas">
-            <Form>BasicLogin</Form>
-            <FormType>dfm</FormType>
-        </DCCReference>
-        <DCCReference Include="dlgAbout.pas">
-            <Form>About</Form>
-            <FormType>dfm</FormType>
-        </DCCReference>
         <DCCReference Include="dlgOptions.pas">
             <Form>Options</Form>
             <FormType>dfm</FormType>
         </DCCReference>
-        <DCCReference Include="Utility.pas"/>
         <DCCReference Include="dmReports.pas">
             <Form>RPTS</Form>
             <FormType>dfm</FormType>
             <DesignClass>TDataModule</DesignClass>
         </DCCReference>
+        <DCCReference Include="..\SCM_SHARED\exeinfo.pas"/>
+        <DCCReference Include="..\SCM_SHARED\SCMUtility.pas"/>
+        <DCCReference Include="..\SCM_SHARED\dlgAbout.pas">
+            <Form>About</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="..\SCM_SHARED\dlgBasicLogin.pas">
+            <Form>BasicLogin</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="..\SCM_SHARED\SCMSimpleConnect.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>
@@ -186,6 +187,12 @@
                 <DeployFile LocalName="DEPLOY\INNO\SCM_LeaderBoard_150x150.png" Configuration="Release" Class="UWP_DelphiLogo150"/>
                 <DeployFile LocalName="DEPLOY\INNO\SCM_LeaderBoard_44x44.png" Configuration="Release" Class="UWP_DelphiLogo44"/>
                 <DeployFile LocalName="Win32\Debug\SCM_LeaderBoard.exe" Configuration="Debug" Class="ProjectOutput"/>
+                <DeployFile LocalName="Win32\Debug\SCM_LeaderBoard.exe" Configuration="Debug" Class="ProjectOutput">
+                    <Platform Name="Win32">
+                        <RemoteName>SCM_LeaderBoard.exe</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
                 <DeployClass Name="AdditionalDebugSymbols">
                     <Platform Name="iOSSimulator">
                         <Operation>1</Operation>

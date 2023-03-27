@@ -11,25 +11,23 @@ uses
   Vcl.PlatformDefaultStyleActnCtrls, Vcl.ActnMan, System.ImageList,
   Vcl.ImgList, Vcl.VirtualImageList, Vcl.BaseImageCollection,
   Vcl.ImageCollection,
-
   FireDAC.Stan.Intf,
   FireDAC.Stan.Option, FireDAC.Stan.Param, FireDAC.Stan.Error, FireDAC.DatS,
   FireDAC.Phys.Intf, FireDAC.DApt.Intf, FireDAC.Stan.Async, FireDAC.DApt,
   Data.DB, FireDAC.Comp.DataSet, FireDAC.Comp.Client,
-
   frxClass, frxPreview,
-  dlgOptions, dmSCM, dlgBasicLogin, dlgSplash, dmReports, frxExportBaseDialog,
-  frxExportPDF;
+  dlgOptions, dmSCM, frxExportPDF,
+  dlgSplash, dmReports, frxExportBaseDialog, Vcl.WinXCtrls
+  ;
 
 type
   TLeaderBoard = class(TForm)
     Panel1: TPanel;
-    pnlSwimClubTitle: TPanel;
     DBtxtSwimClubCaption: TDBText;
     DBtxtSwimClubNickName: TDBText;
     spbMenu: TSpeedButton;
     lblMessage: TLabel;
-    spbUpdate: TSpeedButton;
+    spbUpdateTimer: TSpeedButton;
     lblTimeStamp: TLabel;
     spbPrintReport: TSpeedButton;
     spbMemberScores: TSpeedButton;
@@ -52,11 +50,16 @@ type
     ImageCollection1: TImageCollection;
     VirtualImageList1: TVirtualImageList;
     VirtualImageList2: TVirtualImageList;
-    SpeedButton1: TSpeedButton;
+    spbRefresh: TSpeedButton;
     actnTimer: TAction;
     spbCurrEventStatus2: TSpeedButton;
     DBtxtStartOfSwimSeason: TDBText;
     frxPDFExport1: TfrxPDFExport;
+    spbAbout: TSpeedButton;
+    actnAbout: TAction;
+    FlowPanel1: TFlowPanel;
+    RelativePanel1: TRelativePanel;
+    FlowPanel2: TFlowPanel;
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure spbMenuClick(Sender: TObject);
@@ -67,6 +70,7 @@ type
     procedure actnExportPDFUpdate(Sender: TObject);
     procedure actnPrintExecute(Sender: TObject);
     procedure actnPrintUpdate(Sender: TObject);
+    procedure actnAboutExecute(Sender: TObject);
   private
     { Private declarations }
     fSessionID: integer;
@@ -94,12 +98,33 @@ implementation
 {$R *.dfm}
 
 uses
-  System.IniFiles, System.UITypes, Utility, System.DateUtils;
+  System.IniFiles, System.UITypes, SCMUtility, System.DateUtils,
+  dlgBasicLogin, dlgAbout;
+
+// ----------------------------------------------------
+{
+NOTE:
+  TSpeedButton
+  Layout: blGlyphTop, Margin: -1, Spacing: 4.
+  -- caption enabled but no longer rendered to button canvas.
+}
 
 // ----------------------------------------------------
 // A C T I O N S . . . .
 // ----------------------------------------------------
 {$REGION 'ACTIONS'}
+
+procedure TLeaderBoard.actnAboutExecute(Sender: TObject);
+var
+dlg: TAbout;
+begin
+  dlg := TAbout.Create(Self);
+  dlg.DBName := 'SwimClubMeet';
+  if Assigned(SCM) and SCM.scmConnection.Connected then
+    dlg.DBConnection := SCM.scmConnection;
+  dlg.ShowModal;
+  dlg.Free;
+end;
 
 procedure TLeaderBoard.actnExportPDFExecute(Sender: TObject);
 var
@@ -115,10 +140,10 @@ end;
 
 procedure TLeaderBoard.actnExportPDFUpdate(Sender: TObject);
 begin
-   if frxPreview1.Visible then
-      TAction(Sender).Enabled := true
-   else
-      TAction(Sender).Enabled := false;
+  if frxPreview1.Visible then
+    TAction(Sender).Enabled := true
+  else
+    TAction(Sender).Enabled := false;
 end;
 
 procedure TLeaderBoard.actnPrintExecute(Sender: TObject);
@@ -134,10 +159,10 @@ end;
 
 procedure TLeaderBoard.actnPrintUpdate(Sender: TObject);
 begin
-   if frxPreview1.Visible then
-      TAction(Sender).Enabled := true
-   else
-      TAction(Sender).Enabled := false;
+  if frxPreview1.Visible then
+    TAction(Sender).Enabled := true
+  else
+    TAction(Sender).Enabled := false;
 end;
 
 procedure TLeaderBoard.actnRefreshExecute(Sender: TObject);
@@ -158,10 +183,10 @@ end;
 
 procedure TLeaderBoard.actnRefreshUpdate(Sender: TObject);
 begin
-   if frxPreview1.Visible then
-      TAction(Sender).Enabled := true
-   else
-      TAction(Sender).Enabled := false;
+  if frxPreview1.Visible then
+    TAction(Sender).Enabled := true
+  else
+    TAction(Sender).Enabled := false;
 end;
 
 procedure TLeaderBoard.ClearSpeedBtnGroup2;
@@ -212,6 +237,8 @@ begin
   // C O N N E C T   T O   S E R V E R .
   // ----------------------------------------------------
   aBasicLogin := TBasicLogin.Create(Self);
+  aBasicLogin.DBName := 'SwimClubMeet';
+  aBasicLogin.DBConnection := SCM.scmConnection;
   result := aBasicLogin.ShowModal;
   aBasicLogin.Free;
 

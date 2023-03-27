@@ -140,7 +140,7 @@ implementation
 
 {$R *.dfm}
 
-uses dmSCM, FireDAC.Stan.Param, System.UITypes, Utility, IniFiles;
+uses dmSCM, FireDAC.Stan.Param, System.UITypes, SCMUtility, IniFiles;
 
 procedure TOptions.actnAutoUpdateExecute(Sender: TObject);
 begin

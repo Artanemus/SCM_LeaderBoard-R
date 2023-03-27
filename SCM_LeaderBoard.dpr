@@ -3,16 +3,17 @@ program SCM_LeaderBoard;
 uses
   Vcl.Forms,
   frmLeaderBoard in 'frmLeaderBoard.pas' {LeaderBoard},
-  exeinfo in 'exeinfo.pas',
   dmSCM in 'dmSCM.pas' {SCM: TDataModule},
   dlgSplash in 'dlgSplash.pas' {Splash},
-  dlgBasicLogin in 'dlgBasicLogin.pas' {BasicLogin},
-  dlgAbout in 'dlgAbout.pas' {About},
   dlgOptions in 'dlgOptions.pas' {Options},
-  Utility in 'Utility.pas',
   dmReports in 'dmReports.pas' {RPTS: TDataModule},
   Vcl.Themes,
-  Vcl.Styles;
+  Vcl.Styles,
+  exeinfo in '..\SCM_SHARED\exeinfo.pas',
+  SCMUtility in '..\SCM_SHARED\SCMUtility.pas',
+  dlgAbout in '..\SCM_SHARED\dlgAbout.pas' {About},
+  dlgBasicLogin in '..\SCM_SHARED\dlgBasicLogin.pas' {BasicLogin},
+  SCMSimpleConnect in '..\SCM_SHARED\SCMSimpleConnect.pas';
 
 {$R *.res}
 

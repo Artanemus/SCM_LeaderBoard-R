@@ -36,10 +36,10 @@ type
     function GetStartOfSession(SessionID: integer): TDateTime;
     function GetSessionCount(SwimClubID: integer; SDate, EDate: TDateTime): Integer;
     procedure ActivateTable();
-    procedure SimpleLoadSettingString(ASection, AName: string; var AValue: string);
-    procedure SimpleMakeTemporyFDConnection(Server, User, Password: string;
-      OsAuthent: boolean);
-    procedure SimpleSaveSettingString(ASection, AName, AValue: string);
+//    procedure SimpleLoadSettingString(ASection, AName: string; var AValue: string);
+//    procedure SimpleMakeTemporyFDConnection(Server, User, Password: string;
+//      OsAuthent: boolean);
+//    procedure SimpleSaveSettingString(ASection, AName, AValue: string);
     property IsActive: boolean read FIsActive write FIsActive;
   end;
 
@@ -57,13 +57,30 @@ implementation
 uses
   System.IOUtils, IniFiles;
 
-{$REGION  SIMPLE TEMPORY CONNECTION AND INIFILES CONFIGURATION}
 
 procedure TSCM.ActivateTable;
 begin
+  FIsActive := false;
   // TODO: activate all the tables on the form ?....
-  qryHeatStatus.Active := true;
-  FIsActive := true;
+  if scmConnection.Connected then
+  begin
+    qryHeatStatus.Connection := scmConnection;
+    qryHeatStatus.Open;
+    qrySwimClub.Connection := scmConnection;
+    qrySwimClub.Open;
+    qrySession.Connection := scmConnection;
+    qrySession.Open;
+    qryLBHeader.Connection := scmConnection;
+    qryLBHeader.Open;
+
+    if qryHeatStatus.Active and qrySwimClub.Active and qrySession.Active and
+      qryLBHeader.Active then
+      FIsActive := true;
+
+    qryGetSessionCount.Connection := scmConnection;
+    qryGetStartOfSession.Connection := scmConnection;
+
+  end;
 end;
 
 procedure TSCM.DataModuleCreate(Sender: TObject);
@@ -135,6 +152,10 @@ begin
   end;
 end;
 
+{$REGION  SIMPLE TEMPORY CONNECTION AND INIFILES CONFIGURATION}
+
+
+{
 procedure TSCM.SimpleLoadSettingString(ASection, AName: string; var AValue: string);
 var
   ini: TIniFile;
@@ -202,6 +223,7 @@ begin
   end;
 
 end;
+}
 
 {$REGION end}
 

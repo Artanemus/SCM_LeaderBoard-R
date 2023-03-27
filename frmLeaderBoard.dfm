@@ -1,7 +1,7 @@
 object LeaderBoard: TLeaderBoard
   Left = 0
   Top = 0
-  Caption = 'LeaderBoard'
+  Caption = 'SwimClubMeet LeaderBoard'
   ClientHeight = 703
   ClientWidth = 1271
   Color = clBtnFace
@@ -11,24 +11,26 @@ object LeaderBoard: TLeaderBoard
   Font.Height = -16
   Font.Name = 'Tahoma'
   Font.Style = []
-  OldCreateOrder = False
   Position = poScreenCenter
   OnCreate = FormCreate
   OnDestroy = FormDestroy
-  PixelsPerInch = 96
   TextHeight = 19
   object Panel1: TPanel
-    Left = 0
-    Top = 99
-    Width = 1271
-    Height = 604
+    AlignWithMargins = True
+    Left = 3
+    Top = 130
+    Width = 1265
+    Height = 570
     Align = alClient
+    BevelOuter = bvNone
     TabOrder = 0
+    ExplicitWidth = 1261
+    ExplicitHeight = 569
     object frxPreview1: TfrxPreview
-      Left = 1
-      Top = 1
-      Width = 1269
-      Height = 602
+      Left = 0
+      Top = 0
+      Width = 1265
+      Height = 570
       Align = alClient
       OutlineVisible = True
       OutlineWidth = 121
@@ -36,191 +38,328 @@ object LeaderBoard: TLeaderBoard
       FindFmVisible = False
       UseReportHints = True
       HideScrolls = False
+      ExplicitWidth = 1261
+      ExplicitHeight = 569
     end
   end
-  object pnlSwimClubTitle: TPanel
-    Left = 0
-    Top = 0
-    Width = 1271
-    Height = 99
+  object RelativePanel1: TRelativePanel
+    AlignWithMargins = True
+    Left = 3
+    Top = 3
+    Width = 1265
+    Height = 121
+    ControlCollection = <
+      item
+        Control = scmProgressBar
+        AlignBottomWithPanel = True
+        AlignHorizontalCenterWithPanel = False
+        AlignLeftWithPanel = True
+        AlignRightWithPanel = True
+        AlignTopWithPanel = False
+        AlignVerticalCenterWithPanel = False
+      end
+      item
+        Control = lblMessage
+        Above = scmProgressBar
+        AlignBottomWithPanel = False
+        AlignHorizontalCenterWithPanel = False
+        AlignLeftWithPanel = True
+        AlignRightWithPanel = False
+        AlignTopWithPanel = False
+        AlignVerticalCenterWithPanel = False
+      end
+      item
+        Control = lblTimeStamp
+        Above = scmProgressBar
+        AlignBottomWithPanel = False
+        AlignHorizontalCenterWithPanel = False
+        AlignLeftWithPanel = False
+        AlignRightWithPanel = True
+        AlignTopWithPanel = False
+        AlignVerticalCenterWithPanel = False
+      end
+      item
+        Control = FlowPanel1
+        AlignBottomWithPanel = False
+        AlignHorizontalCenterWithPanel = False
+        AlignLeftWithPanel = False
+        AlignRightWithPanel = True
+        AlignTopWithPanel = True
+        AlignVerticalCenterWithPanel = False
+      end
+      item
+        Control = FlowPanel2
+        AlignBottomWithPanel = False
+        AlignHorizontalCenterWithPanel = False
+        AlignLeftWithPanel = True
+        AlignRightWithPanel = False
+        AlignTopWithPanel = True
+        AlignVerticalCenterWithPanel = False
+      end
+      item
+        Control = DBtxtSwimClubCaption
+        AlignBottomWithPanel = False
+        AlignHorizontalCenterWithPanel = True
+        AlignLeftWithPanel = False
+        AlignRightWithPanel = False
+        AlignTopWithPanel = True
+        AlignVerticalCenterWithPanel = False
+      end
+      item
+        Control = DBtxtSwimClubNickName
+        AlignBottomWithPanel = False
+        AlignHorizontalCenterWithPanel = True
+        AlignLeftWithPanel = False
+        AlignRightWithPanel = False
+        AlignTopWithPanel = False
+        AlignVerticalCenterWithPanel = False
+        Below = DBtxtSwimClubCaption
+      end
+      item
+        Control = DBtxtStartOfSwimSeason
+        AlignBottomWithPanel = False
+        AlignHorizontalCenterWithPanel = True
+        AlignLeftWithPanel = False
+        AlignRightWithPanel = False
+        AlignTopWithPanel = False
+        AlignVerticalCenterWithPanel = False
+        Below = DBtxtSwimClubNickName
+      end>
     Align = alTop
-    Color = clBtnHighlight
-    ParentBackground = False
+    BevelOuter = bvNone
     TabOrder = 1
+    ExplicitWidth = 1261
     DesignSize = (
-      1271
-      99)
+      1265
+      121)
+    object scmProgressBar: TProgressBar
+      Left = 0
+      Top = 105
+      Width = 1265
+      Height = 16
+      Position = 100
+      TabOrder = 0
+    end
+    object lblMessage: TLabel
+      AlignWithMargins = True
+      Left = 10
+      Top = 83
+      Width = 211
+      Height = 19
+      Margins.Left = 10
+      Anchors = []
+      Caption = 'Only timed events are scored.'
+    end
+    object lblTimeStamp: TLabel
+      AlignWithMargins = True
+      Left = 1169
+      Top = 83
+      Width = 86
+      Height = 19
+      Margins.Right = 10
+      Alignment = taRightJustify
+      Anchors = []
+      Caption = 'Time Stamp'
+    end
+    object FlowPanel1: TFlowPanel
+      Left = 963
+      Top = 0
+      Width = 302
+      Height = 56
+      BevelOuter = bvNone
+      FlowStyle = fsRightLeftTopBottom
+      TabOrder = 1
+      DesignSize = (
+        302
+        56)
+      object spbExportPDF: TSpeedButton
+        Left = 254
+        Top = 0
+        Width = 48
+        Height = 48
+        Action = actnExportPDF
+        Anchors = [akTop, akRight]
+        Images = VirtualImageList1
+        Flat = True
+        Layout = blGlyphTop
+        Margin = 0
+      end
+      object spbPrintReport: TSpeedButton
+        Left = 206
+        Top = 0
+        Width = 48
+        Height = 48
+        Action = actnPrint
+        Anchors = [akTop, akRight]
+        Images = VirtualImageList1
+        Flat = True
+        Layout = blGlyphTop
+        Margin = 0
+      end
+      object spbUpdateTimer: TSpeedButton
+        Left = 158
+        Top = 0
+        Width = 48
+        Height = 48
+        Anchors = [akTop, akRight]
+        ImageIndex = 0
+        ImageName = 'clock'
+        Images = VirtualImageList1
+        Flat = True
+        Layout = blGlyphTop
+        Margin = 0
+      end
+      object spbRefresh: TSpeedButton
+        Left = 110
+        Top = 0
+        Width = 48
+        Height = 48
+        Action = actnRefresh
+        AllowAllUp = True
+        Anchors = [akTop, akRight]
+        Images = VirtualImageList1
+        Flat = True
+        Layout = blGlyphTop
+        Margin = 0
+      end
+      object spbAbout: TSpeedButton
+        Left = 62
+        Top = 0
+        Width = 48
+        Height = 48
+        Action = actnAbout
+        AllowAllUp = True
+        Anchors = [akTop, akRight]
+        Images = VirtualImageList1
+        Flat = True
+        Layout = blGlyphTop
+        Margin = 0
+      end
+    end
+    object FlowPanel2: TFlowPanel
+      Left = 0
+      Top = 0
+      Width = 361
+      Height = 56
+      Anchors = []
+      BevelOuter = bvNone
+      TabOrder = 2
+      object spbMenu: TSpeedButton
+        Left = 0
+        Top = 0
+        Width = 48
+        Height = 48
+        ImageIndex = 0
+        ImageName = 'outline_menu_black_48dp'
+        Images = VirtualImageList2
+        Flat = True
+        OnClick = spbMenuClick
+      end
+      object spbMemberScores: TSpeedButton
+        Tag = 1
+        Left = 48
+        Top = 0
+        Width = 48
+        Height = 48
+        AllowAllUp = True
+        GroupIndex = 2
+        ImageIndex = 1
+        ImageName = 'outline_people_alt_black_48dp'
+        Images = VirtualImageList2
+        Flat = True
+        OnClick = spbGenericSPBtnClick
+      end
+      object spbHouseScores: TSpeedButton
+        Tag = 2
+        Left = 96
+        Top = 0
+        Width = 48
+        Height = 48
+        AllowAllUp = True
+        GroupIndex = 2
+        ImageIndex = 2
+        ImageName = 'outline_home_black_48dp'
+        Images = VirtualImageList2
+        Flat = True
+        OnClick = spbGenericSPBtnClick
+      end
+      object spbEventScores: TSpeedButton
+        Tag = 3
+        Left = 144
+        Top = 0
+        Width = 48
+        Height = 48
+        AllowAllUp = True
+        GroupIndex = 2
+        ImageIndex = 3
+        ImageName = 'outline_pool_black_48dp'
+        Images = VirtualImageList2
+        Flat = True
+        OnClick = spbGenericSPBtnClick
+      end
+      object spbCurrEventStatus: TSpeedButton
+        Tag = 4
+        Left = 192
+        Top = 0
+        Width = 48
+        Height = 48
+        AllowAllUp = True
+        GroupIndex = 2
+        ImageIndex = 4
+        ImageName = 'outline_leaderboard_black_48dp'
+        Images = VirtualImageList2
+        Flat = True
+        OnClick = spbGenericSPBtnClick
+      end
+      object spbCurrEventStatus2: TSpeedButton
+        Tag = 4
+        Left = 240
+        Top = 0
+        Width = 48
+        Height = 48
+        AllowAllUp = True
+        GroupIndex = 2
+        ImageIndex = 4
+        ImageName = 'outline_leaderboard_black_48dp'
+        Images = VirtualImageList2
+        Flat = True
+        OnClick = spbGenericSPBtnClick
+      end
+    end
     object DBtxtSwimClubCaption: TDBText
-      Left = 368
-      Top = 5
-      Width = 609
-      Height = 26
+      AlignWithMargins = True
+      Left = 551
+      Top = 10
+      Width = 163
+      Height = 19
+      Margins.Top = 10
       Alignment = taCenter
-      Anchors = [akLeft, akTop, akRight]
+      Anchors = []
+      AutoSize = True
       DataField = 'Caption'
     end
     object DBtxtSwimClubNickName: TDBText
-      Left = 344
-      Top = 32
-      Width = 657
-      Height = 26
+      AlignWithMargins = True
+      Left = 542
+      Top = 42
+      Width = 180
+      Height = 19
+      Margins.Top = 10
       Alignment = taCenter
-      Anchors = [akLeft, akTop, akRight]
+      Anchors = []
+      AutoSize = True
       DataField = 'NickName'
     end
-    object spbMenu: TSpeedButton
-      Left = 5
-      Top = 5
-      Width = 48
-      Height = 48
-      ImageIndex = 0
-      ImageName = 'outline_menu_black_48dp'
-      Images = VirtualImageList2
-      Flat = True
-      OnClick = spbMenuClick
-    end
-    object lblMessage: TLabel
-      Left = 5
-      Top = 59
-      Width = 211
-      Height = 19
-      Caption = 'Only timed events are scored.'
-    end
-    object spbUpdate: TSpeedButton
-      Left = 1102
-      Top = 4
-      Width = 48
-      Height = 48
-      Anchors = [akTop, akRight]
-      ImageIndex = 0
-      ImageName = 'outline_watch_later_black_48dp'
-      Images = VirtualImageList1
-      Flat = True
-    end
-    object lblTimeStamp: TLabel
-      Left = 1180
-      Top = 59
-      Width = 86
-      Height = 19
-      Alignment = taRightJustify
-      Anchors = [akRight, akBottom]
-      Caption = 'Time Stamp'
-      ExplicitTop = 49
-    end
-    object spbPrintReport: TSpeedButton
-      Left = 1158
-      Top = 5
-      Width = 48
-      Height = 48
-      Action = actnPrint
-      Anchors = [akTop, akRight]
-      ImageIndex = 1
-      ImageName = 'outline_print_black_48dp'
-      Images = VirtualImageList1
-      Flat = True
-    end
-    object spbMemberScores: TSpeedButton
-      Tag = 1
-      Left = 59
-      Top = 5
-      Width = 48
-      Height = 48
-      AllowAllUp = True
-      GroupIndex = 2
-      ImageIndex = 1
-      ImageName = 'outline_people_alt_black_48dp'
-      Images = VirtualImageList2
-      Flat = True
-      OnClick = spbGenericSPBtnClick
-    end
-    object spbHouseScores: TSpeedButton
-      Tag = 2
-      Left = 113
-      Top = 5
-      Width = 48
-      Height = 48
-      AllowAllUp = True
-      GroupIndex = 2
-      ImageIndex = 2
-      ImageName = 'outline_home_black_48dp'
-      Images = VirtualImageList2
-      Flat = True
-      OnClick = spbGenericSPBtnClick
-    end
-    object spbEventScores: TSpeedButton
-      Tag = 3
-      Left = 167
-      Top = 5
-      Width = 48
-      Height = 48
-      AllowAllUp = True
-      GroupIndex = 2
-      ImageIndex = 3
-      ImageName = 'outline_pool_black_48dp'
-      Images = VirtualImageList2
-      Flat = True
-      OnClick = spbGenericSPBtnClick
-    end
-    object spbCurrEventStatus: TSpeedButton
-      Tag = 4
-      Left = 221
-      Top = 5
-      Width = 48
-      Height = 48
-      AllowAllUp = True
-      GroupIndex = 2
-      ImageIndex = 4
-      ImageName = 'outline_leaderboard_black_48dp'
-      Images = VirtualImageList2
-      Flat = True
-      OnClick = spbGenericSPBtnClick
-    end
-    object spbExportPDF: TSpeedButton
-      Left = 1212
-      Top = 4
-      Width = 48
-      Height = 48
-      Action = actnExportPDF
-      Anchors = [akTop, akRight]
-      ImageIndex = 2
-      ImageName = 'outline_picture_as_pdf_black_48dp'
-      Images = VirtualImageList1
-      Flat = True
-    end
-    object SpeedButton1: TSpeedButton
-      Left = 1048
-      Top = 4
-      Width = 48
-      Height = 48
-      Action = actnRefresh
-      AllowAllUp = True
-      Anchors = [akTop, akRight]
-      ImageIndex = 3
-      ImageName = 'outline_refresh_black_48dp'
-      Images = VirtualImageList1
-      Flat = True
-    end
-    object spbCurrEventStatus2: TSpeedButton
-      Tag = 4
-      Left = 275
-      Top = 5
-      Width = 48
-      Height = 48
-      AllowAllUp = True
-      GroupIndex = 2
-      ImageIndex = 4
-      ImageName = 'outline_leaderboard_black_48dp'
-      Images = VirtualImageList2
-      Flat = True
-      OnClick = spbGenericSPBtnClick
-    end
     object DBtxtStartOfSwimSeason: TDBText
-      Left = 352
-      Top = 59
-      Width = 657
-      Height = 26
+      AlignWithMargins = True
+      Left = 560
+      Top = 74
+      Width = 144
+      Height = 16
+      Margins.Top = 10
       Alignment = taCenter
-      Anchors = [akLeft, akTop, akRight]
+      Anchors = []
+      AutoSize = True
       DataField = 'CaptionStr'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
@@ -229,17 +368,9 @@ object LeaderBoard: TLeaderBoard
       Font.Style = []
       ParentFont = False
     end
-    object scmProgressBar: TProgressBar
-      Left = 1
-      Top = 82
-      Width = 1269
-      Height = 16
-      Align = alBottom
-      Position = 100
-      TabOrder = 0
-    end
   end
   object ActionManager1: TActionManager
+    Images = VirtualImageList1
     Left = 472
     Top = 200
     StyleName = 'Platform Default'
@@ -266,27 +397,45 @@ object LeaderBoard: TLeaderBoard
     end
     object actnSession: TAction
       Tag = 3
+      Caption = 'Session'
       GroupIndex = 1
       Hint = 'The last closed event in detail.'
     end
     object actnRefresh: TAction
+      Caption = 'Refresh'
       Hint = 'Refresh the leaderboard.'
+      ImageIndex = 3
+      ImageName = 'refresh'
       OnExecute = actnRefreshExecute
       OnUpdate = actnRefreshUpdate
     end
     object actnPrint: TAction
+      Caption = 'Print Report'
       Hint = 'Print the currently viewed report.'
+      ImageIndex = 1
+      ImageName = 'print'
       OnExecute = actnPrintExecute
       OnUpdate = actnPrintUpdate
     end
     object actnExportPDF: TAction
+      Caption = 'Export PDF'
       Hint = 'Export the current viewed report to a PDF to file.'
+      ImageIndex = 2
+      ImageName = 'PDF'
       OnExecute = actnExportPDFExecute
       OnUpdate = actnExportPDFUpdate
     end
     object actnTimer: TAction
-      Caption = 'actnTimer'
+      Caption = 'Timer'
       Hint = 'Set the timer for auto-refresh'
+      ImageIndex = 0
+      ImageName = 'clock'
+    end
+    object actnAbout: TAction
+      Caption = 'About'
+      ImageIndex = 4
+      ImageName = 'Info'
+      OnExecute = actnAboutExecute
     end
   end
   object Timer1: TTimer
@@ -297,7 +446,7 @@ object LeaderBoard: TLeaderBoard
   object ImageCollection1: TImageCollection
     Images = <
       item
-        Name = 'outline_watch_later_black_48dp'
+        Name = 'clock'
         SourceImages = <
           item
             Image.Data = {
@@ -338,7 +487,7 @@ object LeaderBoard: TLeaderBoard
           end>
       end
       item
-        Name = 'outline_print_black_48dp'
+        Name = 'print'
         SourceImages = <
           item
             Image.Data = {
@@ -357,7 +506,7 @@ object LeaderBoard: TLeaderBoard
           end>
       end
       item
-        Name = 'outline_picture_as_pdf_black_48dp'
+        Name = 'PDF'
         SourceImages = <
           item
             Image.Data = {
@@ -376,7 +525,7 @@ object LeaderBoard: TLeaderBoard
           end>
       end
       item
-        Name = 'outline_home_black_48dp'
+        Name = 'home'
         SourceImages = <
           item
             Image.Data = {
@@ -503,7 +652,7 @@ object LeaderBoard: TLeaderBoard
           end>
       end
       item
-        Name = 'outline_refresh_black_48dp'
+        Name = 'refresh'
         SourceImages = <
           item
             Image.Data = {
@@ -535,37 +684,79 @@ object LeaderBoard: TLeaderBoard
               15A6A03B6AE14BDC09A594524A29A594524A29A594524AA94C3B05156E0E9530
               9D467A0000000049454E44AE426082}
           end>
+      end
+      item
+        Name = 'Info'
+        SourceImages = <
+          item
+            Image.Data = {
+              89504E470D0A1A0A0000000D49484452000000300000003008060000005702F9
+              87000000017352474200AECE1CE90000042E494441546843ED9947A815491486
+              3FB72E0C881B130AAE467414845117868563449C3163405147174E7010441046
+              712328C6013161CE19CC2E745C184031A12B41316D440C0BD7F20F558FBA7DBB
+              6F5755973E1E78A0B9977BEB9C3A7F8513FE6E450B97562DDC7FBE0368EE1D4C
+              B9035D8021407FA0BBF308E373E7B903FC07BC4A01BE2A801F8079C020E0A740
+              876E0337801DC09340DDA6E1B100DA007F038B017DAF229F80F5C03A40DF8324
+              06C04C6029D02B33D353E000F0D21C0FFBA9613A5E5D9DCFE940CF8CFE63602D
+              B03B044128800DC09F9909AE03FB8DF39F3D276F0D08C40C6070464700E678DA
+              090AA3E781518EE177C002E084EF6405E326005B810ECEFFBAF43D7CECFAEEC0
+              26E077C7E023606A95CB97714EC1E030D0DBF9FDAE89680D71F800F8CDAC9035
+              740C98ECB33A11638E02931CBD65C0EA4676CA004C312B636DFC9BD989081F4B
+              5536038B9C51BA2B078BB41A015078549CB6D1E60AF073E9F469065C06861B53
+              8A4ECA33B921B6118015C03FC68842E240E0751AFF4AAD74066E9AD0ABC12B01
+              F95327450074A964C026A95F8153A5D3D60E9806FC627E92EEA1407DE99E343A
+              5A7D2D605DC62E02A0CCF89751569C578D132A0AAF022E91230A97A1A29AC9E6
+              09E52065FE1A2902700FE86B462A0A6D0F9D19980DEC327A4A4C4119D6E8CD07
+              B699EFF7817E3E0054493E3303551EFC08F866D8ACFD8EE687B7110B201565EC
+              074ED9A1E4A624D724793BE0AE5CE1E589742846CD0D26753B9907C03DFF2A15
+              EC16C64C9E42C74DA475F7200F8022C67833F358E05C0A2F2AD818039C35FAA7
+              9DC8F6FF4F7900DC0BDC0750DD13234381AB46F11A302CC688A98F1E165DE43C
+              00EF817646419F1F23274E05A02DF0C1F8A0CFF66597D80520E5E02EC94C900A
+              8092A95D442F00EE11521D14DBAFA602A0AA40F590A42E17945DE291C0A5663E
+              4223808B2197D80DA3621C76363380B986B9901B5E6154F5B77A5C49954496EA
+              08B9894C3DB4888326C93B426210543E4BAA94122900644B09311B3584585131
+              77CB21AA628BB91400DC624E44D880EC712E022092C996AEB1E5740A006E39AD
+              BB2932AD467C1B9A8911F4495500EA1F8E1B6F831B1AE9B997471C901A8B909C
+              50058062BF76DE7245C12DA500649B7AD544AA8DBE85A8F6B11C5174532F47C5
+              83EE753CFE9A9C909D26CB0DCD02F615AD5A192F24BD35C012C7C0D7E486B29C
+              D046A737CFC5E003408A6780718E057144EA8E52D12CA251D43F5B2E48535D00
+              46979D575F00B2B307D0765A51B213531D4AB7647D127DA2955692B2A29DF8A3
+              CC79FD1F0240E317025B328653D3EB416D6C2800F92E567A7983171C6FCCD17A
+              01E89174338F8E4A27F36E20EF05C72AE088CFCADB313100A4DBA25F31B90BA4
+              84A37A4549CB1261BE0BA8E644BDB248B3900459633F7607F29C1421262022C2
+              1ABD66155125C76B082A5FD4D9712901C4FA5049EF3B804ACB9740B9C5EFC017
+              4EABDD310AD690EA0000000049454E44AE426082}
+          end>
       end>
     Left = 472
     Top = 344
   end
   object VirtualImageList1: TVirtualImageList
-    DisabledGrayscale = False
-    DisabledSuffix = '_Disabled'
     Images = <
       item
         CollectionIndex = 0
-        CollectionName = 'outline_watch_later_black_48dp'
-        Disabled = False
-        Name = 'outline_watch_later_black_48dp'
+        CollectionName = 'clock'
+        Name = 'clock'
       end
       item
         CollectionIndex = 1
-        CollectionName = 'outline_print_black_48dp'
-        Disabled = False
-        Name = 'outline_print_black_48dp'
+        CollectionName = 'print'
+        Name = 'print'
       end
       item
         CollectionIndex = 2
-        CollectionName = 'outline_picture_as_pdf_black_48dp'
-        Disabled = False
-        Name = 'outline_picture_as_pdf_black_48dp'
+        CollectionName = 'PDF'
+        Name = 'PDF'
       end
       item
         CollectionIndex = 8
-        CollectionName = 'outline_refresh_black_48dp'
-        Disabled = False
-        Name = 'outline_refresh_black_48dp'
+        CollectionName = 'refresh'
+        Name = 'refresh'
+      end
+      item
+        CollectionIndex = 9
+        CollectionName = 'Info'
+        Name = 'Info'
       end>
     ImageCollection = ImageCollection1
     Width = 48
@@ -574,37 +765,30 @@ object LeaderBoard: TLeaderBoard
     Top = 408
   end
   object VirtualImageList2: TVirtualImageList
-    DisabledGrayscale = False
-    DisabledSuffix = '_Disabled'
     Images = <
       item
         CollectionIndex = 5
         CollectionName = 'outline_menu_black_48dp'
-        Disabled = False
         Name = 'outline_menu_black_48dp'
       end
       item
         CollectionIndex = 6
         CollectionName = 'outline_people_alt_black_48dp'
-        Disabled = False
         Name = 'outline_people_alt_black_48dp'
       end
       item
         CollectionIndex = 3
-        CollectionName = 'outline_home_black_48dp'
-        Disabled = False
+        CollectionName = 'home'
         Name = 'outline_home_black_48dp'
       end
       item
         CollectionIndex = 7
         CollectionName = 'outline_pool_black_48dp'
-        Disabled = False
         Name = 'outline_pool_black_48dp'
       end
       item
         CollectionIndex = 4
         CollectionName = 'outline_leaderboard_black_48dp'
-        Disabled = False
         Name = 'outline_leaderboard_black_48dp'
       end>
     ImageCollection = ImageCollection1

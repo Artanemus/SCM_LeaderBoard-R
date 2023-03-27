@@ -102,7 +102,7 @@ implementation
 { TRPTS }
 
 uses
-  vcl.Forms, System.IniFiles, System.DateUtils, vcl.Dialogs, Utility,
+  vcl.Forms, System.IniFiles, System.DateUtils, vcl.Dialogs, SCMUtility,
   System.UITypes;
 
 procedure TRPTS.CloseAllQry;
